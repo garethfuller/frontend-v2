@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js';
 import { FiatCurrency } from '@/constants/currency';
 
 import { mountComposable } from '@/tests/mount-helpers';
-import useNumbers, { FNumFormats } from './useNumbers';
+import useNumbers, { bspToDec, FNumFormats } from './useNumbers';
 
 const mockTokens = {
   ETH: {
@@ -317,6 +317,13 @@ describe('useNumbers', () => {
       const expectedValue = (totalEth * mockTokens.ETH.price.usd).toString();
       const value = toFiat(totalEth, mockTokens.ETH.address);
       expect(value).toEqual(expectedValue);
+    });
+  });
+
+  describe('bspToDec', () => {
+    it('Returns correct decimal value', () => {
+      const val = bspToDec(500); // 5%
+      expect(val).toEqual(0.05);
     });
   });
 });
