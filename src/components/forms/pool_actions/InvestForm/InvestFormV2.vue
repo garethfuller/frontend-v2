@@ -56,6 +56,15 @@ const {
   hasValidInputs,
   hasAmountsIn,
   queryError,
+  priceImpact,
+  txInProgress,
+  queryJoinQuery,
+  bptOut,
+  fiatValueIn,
+  fiatValueOut,
+  rektPriceImpact,
+  missingPricesIn,
+  resetAmounts,
   setAmountsIn,
   addTokensIn,
 } = useJoinPool();
@@ -91,6 +100,7 @@ async function initializeTokensForm(isSingleAssetJoin: boolean) {
  * CALLBACKS
  */
 onBeforeMount(() => {
+  // console.log({ useJoinPool: useJoinPool() });
   initializeTokensForm(isSingleAssetJoin.value);
 });
 
@@ -143,7 +153,11 @@ watch([isSingleAssetJoin, poolTokensWithBalance], ([isSingleAsset]) => {
       :poolTokensWithoutBalance="poolTokensWithoutBalance"
     />
 
-    <InvestFormTotalsV2 />
+    <InvestFormTotalsV2
+      :highPriceImpact="highPriceImpact"
+      :loading="isLoadingQuery"
+      :priceImpact="priceImpact"
+    />
 
     <div
       v-if="highPriceImpact"
@@ -198,6 +212,19 @@ watch([isSingleAssetJoin, poolTokensWithBalance], ([isSingleAsset]) => {
         <InvestPreviewModalV2
           v-if="showInvestPreview"
           :pool="pool"
+          :isSingleAssetJoin="isSingleAssetJoin"
+          :amountsIn="amountsIn"
+          :bptOut="bptOut"
+          :fiatValueIn="fiatValueIn"
+          :fiatValueOut="fiatValueOut"
+          :priceImpact="priceImpact"
+          :highPriceImpact="highPriceImpact"
+          :rektPriceImpact="rektPriceImpact"
+          :missingPricesIn="missingPricesIn"
+          :resetAmounts="resetAmounts"
+          :isLoadingQuery="isLoadingQuery"
+          :txInProgress="txInProgress"
+          :queryJoinQuery="queryJoinQuery"
           @close="showInvestPreview = false"
           @show-stake-modal="showStakeModal = true"
         />

@@ -3,7 +3,7 @@ import { compact, pick } from 'lodash';
 import {
   computed,
   ComputedRef,
-  InjectionKey,
+  // InjectionKey,
   onBeforeMount,
   provide,
   reactive,
@@ -104,8 +104,7 @@ export interface TokensProviderResponse {
 /**
  * SETUP
  */
-export const TokensProviderSymbol: InjectionKey<TokensProviderResponse> =
-  Symbol(symbolKeys.Providers.Tokens);
+export const TokensProviderSymbol = Symbol(symbolKeys.Providers.Tokens);
 
 /**
  * TokensProvider
@@ -449,6 +448,7 @@ export default {
     function getToken(address: string): TokenInfo {
       address = getAddressFromPoolId(address); // In case pool ID has been passed
       if (address) address = getAddress(address);
+
       return tokens.value[address];
     }
 
