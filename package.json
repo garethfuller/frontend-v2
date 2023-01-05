@@ -1,6 +1,6 @@
 {
   "name": "@balancer-labs/frontend-v2",
-  "version": "1.83.7",
+  "version": "1.84.0",
   "engines": {
     "node": "14.x",
     "npm": ">=7"
@@ -43,6 +43,7 @@
     "@ethersproject/constants": "~5.4.0",
     "@ethersproject/contracts": "~5.4.1",
     "@ethersproject/providers": "~5.4.4",
+    "@ethersproject/units": "~5.4.0",
     "@georgeroman/balancer-v2-pools": "^0.0.5",
     "@gnosis.pm/safe-apps-provider": "^0.6.0",
     "@gnosis.pm/safe-apps-sdk": "4.0.0",
